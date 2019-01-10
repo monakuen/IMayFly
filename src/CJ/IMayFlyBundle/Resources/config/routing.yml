@@ -1,0 +1,34 @@
+CJ_IMayFly_home:
+    path:   /{page}
+    defaults:
+        _controller: CJIMayFlyBundle:Post:index
+        page:   1
+    requirements:
+        page: \d*
+
+CJ_IMayFly_view:
+    path:   /post/{id}
+    defaults:
+        _controller: CJIMayFlyBundle:Post:view
+        id: 1
+    requirements:
+        id: \d+
+
+CJ_IMayFly_add:
+    path:   /add
+    defaults:
+        _controller: CJIMayFlyBundle:Post:add
+
+CJ_IMayFly_edit:
+    path:   /edit/{id}
+    defaults:
+        _controller: CJIMayFlyBundle:Post:edit
+    requirements:
+        id: \d+
+
+CJ_IMayFly_delete:
+    path:   /delete/{id}
+    defaults:
+        _controller: CJIMayFlyBundle:Post:delete
+    requirements:
+        id: \d+
