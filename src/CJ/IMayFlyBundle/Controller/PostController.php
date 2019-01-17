@@ -15,12 +15,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends Controller
 {
-    public function indexAction($page)
+    public function indexAction()
     {
-        if($page < 1){
-            throw new NotFoundHttpException('Page "'.$page.'" inexistante.');
-        }
-
         return $this->render('CJIMayFlyBundle:Post:index.html.twig');
     }
 
@@ -34,7 +30,7 @@ class PostController extends Controller
         if($request->isMethod('POST')){
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
-            return $this->redirectToRoute('CJ_IMayFly_view', array('id' => 5));
+            return $this->redirectToRoute('CJ_IMayFly_view');
         }
 
         return $this->render('CJIMayFlyBundle:Post:add.html.twig');
@@ -54,5 +50,10 @@ class PostController extends Controller
     public function deleteAction($id)
     {
         return $this->render('CJIMayFlyBundle:Post:delete.html.twig');
+    }
+
+    public function userAction($id)
+    {
+        return $this->render('CJIMayFlyBundle:Post:user.html.twig');
     }
 }

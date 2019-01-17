@@ -1,0 +1,67 @@
+{% extends "CJIMayFlyBundle::layout.html.twig" %}
+
+{% block title %}
+    User - {{ parent() }}
+{% endblock %}
+
+{% block cjimayfly_body %}
+<!--========================================================
+                           CONTENT
+    =========================================================-->
+
+<main>
+    <section class="well well4">
+        <div class="container">
+            <h2 class="text-center">USER</h2>
+            <div class="row">
+                <div class="col-md-9 col-sm-12">
+                    <h4 class="text-center">IMAGE UPLOADÉ</h4>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <div class="thumbnail thumb-shadow">
+                                <a href="detail.html">
+                                    <img src="images/game1.jpg" alt="" width="100%">
+                                    <div class="caption bg2">
+                                        <h6>
+                                            MANETTE PS4
+                                        </h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <div class="thumbnail thumb-shadow">
+                                <a href="detail.html">
+                                    <img src="images/game2.jpeg" alt="" width="100%">
+                                    <div class="caption bg2">
+                                        <h6>
+                                            COLLECTION NINTENDO
+                                        </h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <div class="thumbnail thumb-shadow">
+                                <a href="detail.html">
+                                    <img src="images/game3.jpg" alt="" width="100%">
+                                    <div class="caption bg2">
+                                        <h6>
+                                            SUPER MARIOLLE
+                                        </h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center col-md-3 col-sm-12">
+                    <h4 class="text-center">STATISTIQUE</h4>
+                    <p>144 <span class="glyphicon glyphicon-eye-open"></span></p></br>
+                    <p>258 <span class="glyphicon glyphicon-heart"></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

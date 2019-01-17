@@ -1,0 +1,10 @@
+{% extends "CJIMayFlyBundle::admin-layout.html.twig" %}
+
+{% block title %}
+    Admin - {{ parent() }}
+{% endblock %}
+
+{% block cjimayfly_body %}
+    {{ include("CJIMayFlyBundle:Admin:user.html.twig") }}
+    {{ include("CJIMayFlyBundle:Admin:post.html.twig") }}
+{% endblock %}

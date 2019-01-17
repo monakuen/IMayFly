@@ -11,19 +11,19 @@
 
     {% block stylesheet %}
     <!-- Bootstrap -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="../../../../../assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Links -->
-    <link rel="stylesheet" href="css/camera.css">
-    <link rel="stylesheet" href="css/search.css">
-    <link rel="stylesheet" href="css/google-map.css">
+    <link rel="stylesheet" href="../../../../../assets/css/camera.css">
+    <link rel="stylesheet" href="../../../../../assets/css/search.css">
+    <link rel="stylesheet" href="../../../../../assets/css/google-map.css">
     {% endblock %}
 
     {% block javascript %}
     <!--JS-->
-    <script src="js/jquery.js"></script>
-    <script src="js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="js/rd-smoothscroll.min.js"></script>
+    <script src="../../../../../assets/js/jquery.js"></script>
+    <script src="../../../../../assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../../../../../assets/js/rd-smoothscroll.min.js"></script>
     {% endblock %}
 
 
@@ -34,9 +34,9 @@
                  alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."/>
         </a>
     </div>
-    <script src="js/html5shiv.js"></script>
+    <script src="../../../../../assets/js/html5shiv.js"></script>
     <![endif]-->
-    <script src='js/device.min.js'></script>
+    <script src='../../../../../assets/js/device.min.js'></script>
 </head>
 <body>
 <div class="page">
@@ -47,7 +47,7 @@
         <div class="container top-sect">
             <div class="navbar-header">
                 <h1 class="navbar-brand">
-                    <a data-type='rd-navbar-brand'  href="{% path('CJ_IMayFly_home') %}">IMayFly</a>
+                    <a data-type='rd-navbar-brand'  href="{{ path('CJ_IMayFly_home') }}">IMayFly</a>
                 </h1>
                 <a class="search-form_toggle" href="#"></a>
             </div>
@@ -55,8 +55,8 @@
             <div class="contact-form text-right">
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-edit"></span> S'enregistrer</a></li>
-                    <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
+                    {#<li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-edit"></span> S'enregistrer</a></li>#}
+                    {#<li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>#}
                 </ul>
             </div>
         </div>
@@ -67,10 +67,10 @@
                     <div class="">
                         <ul class="nav navbar-nav sf-menu" data-type="navbar">
                             <li>
-                                <a href="{% path('CJ_IMayFly_home') %}">HOME</a>
+                                <a href="{{  path('CJ_IMayFly_home') }}">HOME</a>
                             </li>
                             <li>
-                                <a href="{% path('CJ_IMayFly_upload') %}">UPLOAD UNE IMAGE <span class="glyphicon glyphicon-upload"></span></a>
+                                <a href="{{  path('CJ_IMayFly_add') }}">UPLOAD UNE IMAGE <span class="glyphicon glyphicon-upload"></span></a>
                             </li>
                         </ul>
                     </div>
@@ -87,6 +87,8 @@
 
         </div>
     </header>
+    {% block body %}
+    {% endblock %}
 
     <!--========================================================
                                 FOOTER
@@ -107,8 +109,8 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-<script src="js/tm-scripts.js"></script>
+<script src="../../../../../assets/js/bootstrap.min.js"></script>
+<script src="../../../../../assets/js/tm-scripts.js"></script>
 <!-- </script> -->
 
 

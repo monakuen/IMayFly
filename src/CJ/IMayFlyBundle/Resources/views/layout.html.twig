@@ -1,13 +1,14 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>{% block title %}CJ IMayFly{% endblock %}</title>
-</head>
-<body>
+{% extends "::layout.html.twig" %}
 
-{% block body %}
+{% block title %}
+    IMayFly - {{ parent() }}
 {% endblock %}
 
-</body>
-</html>
+{% block body %}
+
+    <hr>
+
+    {% block cjimayfly_body %}
+    {% endblock %}
+
+{% endblock %}

@@ -1,14 +1,25 @@
 {% extends "CJIMayFlyBundle::layout.html.twig" %}
 
-{% block body %}
+{% block title %}
+    Upload - {{ parent() }}
+{% endblock %}
 
-    <h2>Ajouter une annonce</h2>
+{% block cjimayfly_body %}
 
-    {{ include("CJIMayFlyBundle:Post:form.html.twig") }}
+    <!--========================================================
+                           CONTENT
+    =========================================================-->
 
-    <p>
-        Attention : cette annonce sera ajoutée directement
-        sur la page d'accueil après validation du formulaire.
-    </p>
+    <main>
+        <section class="well well4">
+            <div class="container">
+                <div class="">
+                    <h2>upload<small>form</small></h2>
+                    {{ include("CJIMayFlyBundle:Post:form.html.twig") }}
+                </div>
+            </div>
+        </section>
+    </main>
+
 
 {% endblock %}

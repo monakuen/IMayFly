@@ -1,5 +1,35 @@
-<h3>Formulaire d'annonce</h3>
+<form id="contact-form" class='contact-form'>
+    <div class="contact-form-loader"></div>
+    <fieldset>
 
-<div class="well">
-    Ici se trouvera le formulaire.
-</div>
+        <label class="category"> category :
+            <select name="category" form="category">
+                <option value="screenshot">Screenshot</option>
+                <option value="dessin">Dessin</option>
+                <option value="montage">Montage</option>
+            </select>
+        </label></br>
+
+        <label class="file">
+            <input type="file" name="image"/>
+        </label></br>
+
+        <label class="title">
+            <input type="text" name="title" placeholder="titre:"/>
+        </label></br>
+
+        <label class="message">
+            <textarea name="message" placeholder="Message:"></textarea>
+        </label></br>
+
+        <label class="tag">
+            <input type="text" name="tag" placeholder="tags:"/>
+        </label>
+
+        <!--  <label class="recaptcha"> <span class="empty-message">*This field is required.</span> </label> -->
+
+        <div class="btn-wr text-primary">
+            <a class="btn btn-primary" href="{{ path('CJ_IMayFly_view') }}" data-type="submit">Submit Image</a>
+        </div>
+    </fieldset>
+</form>
