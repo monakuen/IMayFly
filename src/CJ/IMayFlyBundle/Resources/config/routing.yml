@@ -33,11 +33,23 @@ CJ_IMayFly_delete:
 CJ_IMayFly_user:
     path:   /user/{id}
     defaults:
-        _controller: CJIMayFlyBundle:Post:User
+        _controller: CJIMayFlyBundle:Post:user
     requirements:
         id: \d+
+
+CJ_IMayFly_terms:
+    path:   /terms
+    defaults:
+        _controller: CJIMayFlyBundle:Post:terms
 
 CJ_IMayFly_admin:
     path: /admin
     defaults:
         _controller: CJIMayFlyBundle:Admin:index
+
+CJ_IMayFly_admindelete:
+    path: /admin/delete/{id}
+    defaults:
+        _controller: CJIMayFlyBundle:Admin:delete
+    requirements:
+        id: \d+

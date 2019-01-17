@@ -18,4 +18,9 @@ class AdminController extends Controller
     {
         return $this->render('CJIMayFlyBundle:Admin:index.html.twig');
     }
+
+    public function deleteAction($id)
+    {
+        return $this->render('CJIMayFlyBundle:Admin:delete.html.twig');
+    }
 }

@@ -56,4 +56,9 @@ class PostController extends Controller
     {
         return $this->render('CJIMayFlyBundle:Post:user.html.twig');
     }
+
+    public function termsAction()
+    {
+        return $this->render('CJIMayFlyBundle:Post:terms.html.twig');
+    }
 }
