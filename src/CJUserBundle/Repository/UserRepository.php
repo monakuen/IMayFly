@@ -1,6 +1,6 @@
 <?php
 
-namespace CJ\IMayFlyBundle\Repository;
+namespace CJUserBundle\Repository;
 
 /**
  * UserRepository

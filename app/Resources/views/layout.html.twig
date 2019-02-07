@@ -53,11 +53,16 @@
             </div>
 
             <div class="contact-form text-right">
-
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    Connecté en tant que <a href="{{ path('CJ_IMayFly_user', {'id': app.user.id}) }}"> {{ app.user.username }} </a>
+                -
+                <a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Déconnexion</a>
+                {% else %}
                 <ul class="nav navbar-nav navbar-right">
-                    {#<li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-edit"></span> S'enregistrer</a></li>#}
-                    {#<li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>#}
+                    <li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-edit"></span> S'enregistrer</a></li>
+                    <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Se connecter</a></li>
                 </ul>
+                {% endif %}
             </div>
         </div>
         <div id="stuck_container" class="stuck_container">

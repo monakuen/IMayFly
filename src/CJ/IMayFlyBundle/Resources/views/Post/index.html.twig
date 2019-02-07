@@ -15,120 +15,23 @@
         <div class="container center991">
             <h2 class="text-center">ACCUEIL</h2>
             <div class="row">
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="thumbnail thumb-shadow">
-                        <a href="{{ path ('CJ_IMayFly_view',{'id': 1}) }}">
-                            <img src="images/game1.jpg" alt="" width="100%">
-                            <div class="caption bg2">
-                                <h6>
-                                    MANETTE PS4
-                                </h6>
-                            </div>
-                        </a>
+                {% for post in posts %}
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="thumbnail thumb-shadow">
+                            <a href="{{ path ('CJ_IMayFly_view',{'id': post.id}) }}">
+                                <img src="images/game1.jpg" alt="" width="100%">
+                                <div class="caption bg2">
+                                    <h6>
+                                        {{ post.title }}
+                                    </h6>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="thumbnail thumb-shadow">
-                        <a href="detail.html">
-                            <img src="images/game2.jpeg" alt="" width="100%">
-                            <div class="caption bg2">
-                                <h6>
-                                    COLLECTION NINTENDO
-                                </h6>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="thumbnail thumb-shadow">
-                        <a href="detail.html">
-                            <img src="images/game3.jpg" alt="" width="100%">
-                            <div class="caption bg2">
-                                <h6>
-                                    SUPER MARIOLLE
-                                </h6>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row wow fadeIn" data-wow-duration='2s'>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="thumbnail thumb-shadow">
-                        <a href="detail.html">
-                            <img src="images/game4.jpg" alt="" width="100%">
-                            <div class="caption bg2">
-                                <h6>
-                                    FAN ART
-                                </h6>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="thumbnail thumb-shadow">
-                        <a href="detail.html">
-                            <img src="images/game5.jpg" alt="" width="100%">
-                            <div class="caption bg2">
-                                <h6>
-                                    JEUX SNES
-                                </h6>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="thumbnail thumb-shadow">
-                        <a href="detail.html">
-                            <img src="images/game7.webp" alt="" width="100%">
-                            <div class="caption bg2">
-                                <h6>
-                                    YOGA FLAME
-                                </h6>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row wow fadeIn" data-wow-duration='2s'>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="thumbnail thumb-shadow">
-                        <a href="detail.html">
-                            <img src="images/game6.jpg" alt="" width="100%">
-                            <div class="caption bg2">
-                                <h6>
-                                    TOMB RAIDER
-                                </h6>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="thumbnail thumb-shadow">
-                        <a href="#">
-                            <img src="images/game8.jpeg" alt="" width="100%">
-                            <div class="caption bg2">
-                                <h6>
-                                    STREET FIGHTER
-                                </h6>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12 col-xs-12">
-                    <div class="thumbnail thumb-shadow">
-                        <a href="detail.html">
-                            <img src="images/game9.jpg" alt="" width="100%">
-                            <div class="caption bg2">
-                                <h6>
-                                    NINTENDO FAMILY
-                                </h6>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                {% else %}
+                    <li>Pas (encore !) de post</li>
+                {% endfor %}
             </div>
         </div>
     </section>

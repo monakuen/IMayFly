@@ -1,0 +1,23 @@
+{% extends "CJIMayFlyBundle::layout.html.twig" %}
+
+{# Dans notre layout, il faut définir le block body #}
+{% block body %}
+    <main>
+        <section class="well well1 well1_ins1">
+            <div class="container center991">
+                <div class="row">
+                    {% for key, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ key }}">
+                                {{ message|trans({}, 'FOSUserBundle') }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
