@@ -3,6 +3,7 @@
 namespace CJ\IMayFlyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Post
@@ -22,9 +23,8 @@ class Post
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="user", type="integer")
+     * @ORM\ManyToOne(targetEntity="CJUserBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
@@ -39,6 +39,13 @@ class Post
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255)
+     * @Assert\Image(
+     *     maxSize = "1024k",
+     *     minWidth = 200,
+     *     maxWidth = 1200,
+     *     minHeight = 200,
+     *     maxHeight = 1200
+     *     )
      */
     private $image;
 
@@ -308,6 +315,24 @@ class Post
         $this->date = $date;
     }
 
+    public function upload()
+    {
+        $fileName = md5(uniqid()).'.'.$this->image->guessExtension();
+        $this->image->move(
+            $this->getUploadRootDir(),
+            $fileName
+        );
+        $this->image = $fileName;
+    }
 
+    public function getUploadDir()
+    {
+        return 'uploads/images';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
 }
 

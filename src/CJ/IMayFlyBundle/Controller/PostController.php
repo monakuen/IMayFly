@@ -9,10 +9,12 @@
 namespace CJ\IMayFlyBundle\Controller;
 
 use CJ\IMayFlyBundle\Entity\Post;
+use CJ\IMayFlyBundle\Form\PostType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 class PostController extends Controller
 {
@@ -50,37 +52,39 @@ class PostController extends Controller
         if (null === $post) {
             throw new NotFoundHttpException("La page d'id ".$id." n'existe pas.");
         }
+
         return $this->render('CJIMayFlyBundle:Post:view.html.twig', array(
-            'post' => $post
+            'post' => $post,
         ));
     }
 
     /**
-     * @Security("has_role('ROLE_AUTHOR')")
+     * @Security("has_role('ROLE_USER')")
      */
     public function addAction(Request $request)
     {
         $post = new Post();
-        $post->setUser('1');
-        $post->setImage('mkljhlgkhopihfhhjkhmpihpmj');
-        $post->setTitle('Mario');
-        $post->setCategory('screenshot');
-        $post->setTags('Luigi super mario');
-        $post->setDescription('Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt. Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
 
-        $em = $this->getDoctrine()->getManager();
+        $form = $this->get('form.factory')->create(PostType::class, $post);
 
-        $em->persist($post);
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $user = $this->getUser();
+            $post->setUser($user);
 
-        $em->flush();
+            $post->upload();
 
-        if($request->isMethod('POST')){
-            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
 
-            return $this->redirectToRoute('CJ_IMayFly_view', array('id' => $post->getId()));
-        }
+                $request->getSession()->getFlashBag()->add('notice', 'Post bien enregistrée.');
 
-        return $this->render('CJIMayFlyBundle:Post:add.html.twig', array('post' => $post));
+                return $this->redirectToRoute('CJ_IMayFly_view', array('id' => $post->getId()));
+            }
+
+        return $this->render('CJIMayFlyBundle:Post:add.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     public function editAction($id ,Request $request)
@@ -101,7 +105,19 @@ class PostController extends Controller
 
     public function userAction($id)
     {
-        return $this->render('CJIMayFlyBundle:Post:user.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $posts = $em->getRepository('CJIMayFlyBundle:Post')->findBy(
+            array(),
+            array('date' => 'desc'),
+            null,
+            null
+        );
+        $user = $em->getRepository('CJUserBundle:User')->findOneBy(array('id' => $id));
+//
+        return $this->render('CJIMayFlyBundle:Post:user.html.twig', array(
+            'posts' => $posts,
+            'user' => $user
+        ));
     }
 
     public function termsAction()

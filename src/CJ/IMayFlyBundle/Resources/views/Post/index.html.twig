@@ -10,7 +10,6 @@
  =========================================================-->
 
 <main>
-
     <section class="well well1 well1_ins1">
         <div class="container center991">
             <h2 class="text-center">ACCUEIL</h2>
@@ -19,7 +18,7 @@
                     <div class="col-md-4 col-sm-12 col-xs-12">
                         <div class="thumbnail thumb-shadow">
                             <a href="{{ path ('CJ_IMayFly_view',{'id': post.id}) }}">
-                                <img src="images/game1.jpg" alt="" width="100%">
+                                <img src="{{ asset('uploads/images/' ~ post.image) }}" width="100%">
                                 <div class="caption bg2">
                                     <h6>
                                         {{ post.title }}

@@ -13,10 +13,11 @@
     <main>
         <section class="well well1 well1_ins1">
             <div class="container center991">
-                <img src="images/game1.jpg" alt="" width="100%">
+                <h3 class="text-center">{{ post.title }}</h3>
+                <img src="{{ asset('uploads/images/' ~ post.image) }}" width="100%">
                 <div class="row">
                     <div class="col-md-3 col-sm-12">
-                        <a href="{{ path('CJ_IMayFly_user', {'id': 1}) }}">
+                        <a href="{{ path('CJ_IMayFly_user', {'id': post.user.id }) }}">
                             <h4 class="text-center">{{ post.user }}</h4>
                         </a>
                         <div class="text-center">
