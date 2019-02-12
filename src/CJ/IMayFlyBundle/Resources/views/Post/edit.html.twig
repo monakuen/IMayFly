@@ -1,0 +1,25 @@
+{% extends "CJIMayFlyBundle::layout.html.twig" %}
+
+{% block title %}
+    Edit - {{ parent() }}
+{% endblock %}
+
+{% block cjimayfly_body %}
+
+    <!--========================================================
+                           CONTENT
+    =========================================================-->
+
+    <main>
+        <section class="well well4">
+            <div class="container">
+                <div class="">
+                    <h2>Edit<small>form</small></h2>
+                    {{ include("CJIMayFlyBundle:Post:form.html.twig") }}
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+{% endblock %}

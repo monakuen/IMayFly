@@ -14,24 +14,28 @@
         <div class="container center991">
             <h2 class="text-center">ACCUEIL</h2>
             <div class="row">
-                {% for post in posts %}
-                    <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="thumbnail thumb-shadow">
-                            <a href="{{ path ('CJ_IMayFly_view',{'id': post.id}) }}">
-                                <img src="{{ asset('uploads/images/' ~ post.image) }}" width="100%">
-                                <div class="caption bg2">
-                                    <h6>
-                                        {{ post.title }}
-                                    </h6>
-                                </div>
-                            </a>
-                        </div>
+            {% for post in posts %}
+                <div class="col col-md-4 col-sm-12 ">
+                    <div class="thumbnail thumb-shadow">
+                        <a href="{{ path ('CJ_IMayFly_view',{'id': post.id}) }}">
+                            <img src="{{ asset('uploads/images/' ~ post.image) }}" width="100%">
+                            <div class="caption bg2">
+                                <h6 class="text-center">
+                                    {{ post.title }}
+                                </h6>
+                            </div>
+                        </a>
                     </div>
-
-                {% else %}
-                    <li>Pas (encore !) de post</li>
-                {% endfor %}
+                </div>
+            {% if loop.index % 3 == 0 %}
             </div>
+            <div class="row">
+            {% endif %}
+            {% else %}
+                <li>Pas (encore !) de post</li>
+            {% endfor %}
+            </div>
+            <div class="text-center">{{ knp_pagination_render(posts) }}</div>
         </div>
     </section>
 </main>

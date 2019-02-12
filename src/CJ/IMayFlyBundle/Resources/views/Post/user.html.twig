@@ -15,50 +15,31 @@
             <h2 class="text-center">{{ user.username }}</h2>
             <div class="row">
                 <div class="col-md-9 col-sm-12">
-                    <h4 class="text-center">IMAGE UPLOADÉ</h4>
+                    <h4 class="text-center">IMAGES UPLOADÉ</h4>
                     <div class="row">
+                        {% for post in posts %}
                         <div class="col-md-4 col-sm-12 col-xs-12">
                             <div class="thumbnail thumb-shadow">
-                                <a href="{{ path('CJ_IMayFly_view',{'id':1}) }}">
-                                    <img src="images/game1.jpg" alt="" width="100%">
+                                <a href="{{ path('CJ_IMayFly_view',{'id': post.id }) }}">
+                                    <img src="{{ asset('uploads/images/' ~ post.image) }}" alt="" width="100%">
                                     <div class="caption bg2">
-                                        <h6>
-                                            MANETTE PS4
+                                        <h6 class="text-center">
+                                            {{ post.title }}
                                         </h6>
                                     </div>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-12 col-xs-12">
-                            <div class="thumbnail thumb-shadow">
-                                <a href="detail.html">
-                                    <img src="images/game2.jpeg" alt="" width="100%">
-                                    <div class="caption bg2">
-                                        <h6>
-                                            COLLECTION NINTENDO
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-12 col-xs-12">
-                            <div class="thumbnail thumb-shadow">
-                                <a href="detail.html">
-                                    <img src="images/game3.jpg" alt="" width="100%">
-                                    <div class="caption bg2">
-                                        <h6>
-                                            SUPER MARIOLLE
-                                        </h6>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                        {% else %}
+                            <li>Pas (encore !) de post</li>
+                        {% endfor %}
                     </div>
+                    <div class="text-center">{{ knp_pagination_render(posts) }}</div>
                 </div>
                 <div class="text-center col-md-3 col-sm-12">
                     <h4 class="text-center">STATISTIQUE</h4>
-                    <p>144 <span class="glyphicon glyphicon-eye-open"></span></p></br>
-                    <p>258 <span class="glyphicon glyphicon-heart"></span></p>
+                    <p>{{ user.view }} <span class="glyphicon glyphicon-eye-open"></span></p></br>
+                    <p>{{ user.vote }} <span class="glyphicon glyphicon-heart"></span></p>
                 </div>
             </div>
         </div>

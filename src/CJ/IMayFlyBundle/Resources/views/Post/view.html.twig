@@ -10,7 +10,7 @@
                            CONTENT
     =========================================================-->
 
-    <main>
+    <main xmlns="http://www.w3.org/1999/html">
         <section class="well well1 well1_ins1">
             <div class="container center991">
                 <h3 class="text-center">{{ post.title }}</h3>
@@ -30,6 +30,18 @@
                         <p>{{ post.description }}</p>
                     </div>
                 </div>
+                {% if is_granted('ROLE_SUPER_ADMIN') or app.user == post.user %}
+                    <div class="text-center">
+                        <a href="{{ path('CJ_IMayFly_edit', {'id': post.id}) }}">
+                            <i class="glyphicon glyphicon-edit"></i>
+                            <p>Modifier le post</p>
+                        </a>
+                        <a href="{{ path('CJ_IMayFly_delete', {'id': post.id}) }}">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <p>Supprimer le post</p>
+                        </a>
+                    </div>
+                {% endif %}
             </div>
         </section>
     </main>

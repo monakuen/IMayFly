@@ -1,7 +1,11 @@
 CJ_IMayFly_home:
-    path:   /
+    path:   /{page}
     defaults:
         _controller: CJIMayFlyBundle:Post:index
+        page: 1
+    requirements:
+        page: \d+
+
 
 CJ_IMayFly_view:
     path:   /post/{id}
@@ -31,11 +35,13 @@ CJ_IMayFly_delete:
         id: \d+
 
 CJ_IMayFly_user:
-    path:   /user/{id}
+    path:   /user/{id}/{page}
     defaults:
         _controller: CJIMayFlyBundle:Post:user
+        page: 1
     requirements:
         id: \d+
+        page: \d+
 
 CJ_IMayFly_terms:
     path:   /terms

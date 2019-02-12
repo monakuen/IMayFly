@@ -42,9 +42,9 @@ class Post
      * @Assert\Image(
      *     maxSize = "1024k",
      *     minWidth = 200,
-     *     maxWidth = 1200,
+     *     maxWidth = 1920,
      *     minHeight = 200,
-     *     maxHeight = 1200
+     *     maxHeight = 1920
      *     )
      */
     private $image;

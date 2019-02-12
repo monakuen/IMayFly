@@ -1,0 +1,30 @@
+{% extends "CJIMayFlyBundle::layout.html.twig" %}
+
+{% block title %}
+    Delete - {{ parent() }}
+{% endblock %}
+
+{% block cjimayfly_body %}
+
+    <!--========================================================
+                           CONTENT
+    =========================================================-->
+
+    <main>
+        <section class="well well4">
+            <div class="container">
+                <div class="text-center">
+                    <p class="text-center">Voulez-vous vraiment supprimer ce post</p>
+                    <form method="post">
+                            <button type="submit">Valider</button>
+                    </form>
+                    <a href="{{ path ('CJ_IMayFly_view',{'id': post.id}) }}">
+                        <button>Annuler</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+{% endblock %}

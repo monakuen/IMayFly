@@ -18,4 +18,47 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\Column(name="view", type="integer")
+     */
+    protected $view;
+
+    /**
+     * @ORM\Column(name="vote", type="integer")
+     */
+    protected $vote;
+
+    /**
+     * @return mixed
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * @param mixed $view
+     */
+    public function setView($view)
+    {
+        $this->view = $view;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVote()
+    {
+        return $this->vote;
+    }
+
+    /**
+     * @param mixed $vote
+     */
+    public function setVote($vote)
+    {
+        $this->vote = $vote;
+    }
+
 }

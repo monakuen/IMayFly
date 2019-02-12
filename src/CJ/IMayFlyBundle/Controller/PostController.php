@@ -18,20 +18,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class PostController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request, $page)
     {
         $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('CJIMayFlyBundle:Post')->findBy(
+        $listPosts = $em->getRepository('CJIMayFlyBundle:Post')->findBy(
             array(),                            // Critere
             array('date' => 'desc'),            // Tri
             null,                             // Limite
             null
         );
-//        $adverts = $this->get('knp_paginator')->paginate(
-//            $listAdverts,
-//            $request->query->get('page', $page),
-//            3
-//        );
+        $posts = $this->get('knp_paginator')->paginate(
+            $listPosts,
+            $request->query->get('page', $page),
+            9
+        );
         return $this->render('CJIMayFlyBundle:Post:index.html.twig', array(
             'posts' => $posts
         ));
@@ -77,9 +77,9 @@ class PostController extends Controller
             $em->persist($post);
             $em->flush();
 
-                $request->getSession()->getFlashBag()->add('notice', 'Post bien enregistrée.');
+            $request->getSession()->getFlashBag()->add('notice', 'Post bien enregistrée.');
 
-                return $this->redirectToRoute('CJ_IMayFly_view', array('id' => $post->getId()));
+            return $this->redirectToRoute('CJ_IMayFly_view', array('id' => $post->getId()));
             }
 
         return $this->render('CJIMayFlyBundle:Post:add.html.twig', array(
@@ -89,29 +89,65 @@ class PostController extends Controller
 
     public function editAction($id ,Request $request)
     {
-        if($request->isMethod('POST')){
-            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien modifiée.');
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('CJIMayFlyBundle:Post')
+        ;
 
-            return $this->redirectToRoute('CJ_IMayFly_view', array('id' => $id));
+        $post = $repository->find($id);
+
+        $form = $this->get('form.factory')->create(PostType::class, $post);
+
+        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
+            $post->upload();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Post bien modifié.');
+
+            return $this->redirectToRoute('CJ_IMayFly_view', array('id' => $post->getId()));
         }
 
-        return $this->render('CJIMayFlyBundle:Post:edit.html.twig');
+        return $this->render('CJIMayFlyBundle:Post:edit.html.twig',array(
+            'form' => $form->createView(),
+            'post' => $post,
+        ));
     }
 
-    public function deleteAction($id)
-    {
-        return $this->render('CJIMayFlyBundle:Post:delete.html.twig');
-    }
-
-    public function userAction($id)
+    public function deleteAction($id ,Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $posts = $em->getRepository('CJIMayFlyBundle:Post')->findBy(
-            array(),
+        $post = $em->find('CJIMayFlyBundle:Post', $id);
+
+        if($request->isMethod('POST')) {
+            $em->remove($post);
+            $em->flush();
+
+            return $this->redirectToRoute('CJ_IMayFly_home');
+        }
+        return $this->render('CJIMayFlyBundle:Post:delete.html.twig',array(
+            'post' => $post,
+        ));
+    }
+
+    public function userAction(Request $request, $page, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $listPosts = $em->getRepository('CJIMayFlyBundle:Post')->findBy(
+            array('user' => $id),
             array('date' => 'desc'),
             null,
             null
         );
+
+        $posts = $this->get('knp_paginator')->paginate(
+            $listPosts,
+            $request->query->get('page', $page),
+            9
+        );
+
         $user = $em->getRepository('CJUserBundle:User')->findOneBy(array('id' => $id));
 //
         return $this->render('CJIMayFlyBundle:Post:user.html.twig', array(
