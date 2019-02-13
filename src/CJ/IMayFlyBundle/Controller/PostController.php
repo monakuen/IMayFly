@@ -156,6 +156,28 @@ class PostController extends Controller
         ));
     }
 
+    public function searchAction(Request $request, $page)
+    {
+        $searchInput = $request->get('search-input');
+        $listPosts = $this->getDoctrine()->getManager()->getRepository('CJIMayFlyBundle:Post')->createQueryBuilder('cj')
+            ->where('cj.title LIKE :title ')
+            ->orWhere('cj.tags LIKE :tags ')
+            ->orWhere('cj.category LIKE :category')
+            ->setParameter('title', '%'.$searchInput.'%')
+            ->setParameter('tags', '%'.$searchInput.'%')
+            ->setParameter('category', '%'.$searchInput.'%')
+            ->getQuery()
+            ->getResult();
+        $posts = $this->get('knp_paginator')->paginate(
+            $listPosts,
+            $request->query->get('page', $page),
+            9
+        );
+        return $this->render('CJIMayFlyBundle:Post:search.html.twig', array(
+            'posts' => $posts
+        ));
+    }
+
     public function termsAction()
     {
         return $this->render('CJIMayFlyBundle:Post:terms.html.twig');

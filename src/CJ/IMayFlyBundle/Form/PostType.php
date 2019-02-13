@@ -25,9 +25,9 @@ class PostType extends AbstractType
             ->add('tags',TextareaType::class)
             ->add('category',ChoiceType::class,[
                 'choices'  => [
-                    'Screenshot'=> 0,
-                    'Dessin' => 1,
-                    'Autre' => 2,
+                    'Screenshot'=> 'Screenshot',
+                    'Dessin' => 'Dessin',
+                    'Autre' => 'Autre',
                 ],])
             ->add('description')
             ->add('save',SubmitType::class)

@@ -48,14 +48,40 @@ CJ_IMayFly_terms:
     defaults:
         _controller: CJIMayFlyBundle:Post:terms
 
+CJ_IMayFly_search:
+    path:   /search/{page}
+    defaults:
+        _controller: CJIMayFlyBundle:Post:search
+        page: 1
+    requirements:
+        page: \d+
+
 CJ_IMayFly_admin:
-    path: /admin
+    path: /admin/{page}
     defaults:
         _controller: CJIMayFlyBundle:Admin:index
+        page: 1
+    requirements:
+        page: \d+
 
-CJ_IMayFly_admindelete:
-    path: /admin/delete/{id}
+CJ_IMayFly_adminpostdelete:
+    path: /admin/postdelete/{id}
     defaults:
-        _controller: CJIMayFlyBundle:Admin:delete
+        _controller: CJIMayFlyBundle:Admin:deletePost
     requirements:
         id: \d+
+
+CJ_IMayFly_adminuserdelete:
+    path: /admin/userdelete/{id}
+    defaults:
+        _controller: CJIMayFlyBundle:Admin:deleteUser
+    requirements:
+        id: \d+
+
+CJ_IMayFly_adminsearch:
+    path:   /admin/search/{page}
+    defaults:
+        _controller: CJIMayFlyBundle:Admin:search
+        page: 1
+    requirements:
+        page: \d+

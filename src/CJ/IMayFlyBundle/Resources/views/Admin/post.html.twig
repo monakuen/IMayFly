@@ -10,7 +10,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Articles
+                    Posts
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -31,54 +31,26 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {% for post in posts %}
                             <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>super mariole</td>
-                                <td>gallerie</td>
-                                <td>10</td>
-                                <td>2</td>
-                                <td>screenshot</td>
-                                <td>super mario , nes , luigi , prank</td>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula nec nunc lobortis, ac hendrerit tellus rutrum. Ut sagittis nisi nulla, vitae aliquet enim molestie ut. Donec gravida ligula erat. Fusce lacinia ultricies nisi vel venenatis. Sed quam lacus, rutrum sed convallis nec, rutrum et neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi commodo convallis eleifend. Nam vestibulum dapibus augue, sit amet varius purus dictum nec. Quisque metus dui, malesuada vel nibh ac, iaculis rutrum turpis. Pellentesque placerat gravida tortor id fringilla.</td>
+                                <td><a href="{{ path ('CJ_IMayFly_view',{'id': post.id }) }}">{{ post.id }}</a></td>
+                                <td><a href="{{ path ('CJ_IMayFly_user',{'id': post.user.id }) }}">{{ post.user }}</a></td>
+                                <td>{{ post.title }}</td>
+                                <td>{{ post.image }}</td>
+                                <td>{{ post.view }}</td>
+                                <td>{{ post.vote }}</td>
+                                <td>{{ post.category }}</td>
+                                <td>{{ post.tags }}</td>
+                                <td>{{ post.description|slice(0, 50) }}...</td>
                                 <td class="text-center">
-                                    <a href="post_update.html" title="Modifier un utilisateur" class="btn btn-sm btn-warning"><i class="fa fa-edit fa-fw"></i></a>
-                                    <a href="{{ path ('CJ_IMayFly_admindelete',{'id': 1}) }}" title="Supprimer un utilisateur" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-fw"></i></a>
+                                    <a href="{{ path ('CJ_IMayFly_adminpostdelete',{'id': post.id }) }}" title="Supprimer un utilisateur" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-fw"></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>yoga flame</td>
-                                <td>gallerie</td>
-                                <td>40</td>
-                                <td>21</td>
-                                <td>dessin</td>
-                                <td>street fighter , dhalsim , attaque , feu , indien</td>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula nec nunc lobortis, ac hendrerit tellus rutrum. Ut sagittis nisi nulla, vitae aliquet enim molestie ut. Donec gravida ligula erat. Fusce lacinia ultricies nisi vel venenatis. Sed quam lacus, rutrum sed convallis nec, rutrum et neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi commodo convallis eleifend. Nam vestibulum dapibus augue, sit amet varius purus dictum nec. Quisque metus dui, malesuada vel nibh ac, iaculis rutrum turpis. Pellentesque placerat gravida tortor id fringilla.</td>
-                                <td class="text-center">
-                                    <a href="post_update.html" title="Modifier un utilisateur" class="btn btn-sm btn-warning"><i class="fa fa-edit fa-fw"></i></a>
-                                    <a href="{{ path ('CJ_IMayFly_admindelete',{'id': 1}) }}" title="Supprimer un utilisateur" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-fw"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry</td>
-                                <td>manette ps4</td>
-                                <td>gallerie</td>
-                                <td>5</td>
-                                <td>0</td>
-                                <td>photo</td>
-                                <td>manette , ps4 , materiel , plastique</td>
-                                <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula nec nunc lobortis, ac hendrerit tellus rutrum. Ut sagittis nisi nulla, vitae aliquet enim molestie ut. Donec gravida ligula erat. Fusce lacinia ultricies nisi vel venenatis. Sed quam lacus, rutrum sed convallis nec, rutrum et neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi commodo convallis eleifend. Nam vestibulum dapibus augue, sit amet varius purus dictum nec. Quisque metus dui, malesuada vel nibh ac, iaculis rutrum turpis. Pellentesque placerat gravida tortor id fringilla.</td>
-                                <td class="text-center">
-                                    <a href="post_update.html" title="Modifier un utilisateur" class="btn btn-sm btn-warning"><i class="fa fa-edit fa-fw"></i></a>
-                                    <a href="{{ path ('CJ_IMayFly_admindelete',{'id': 1}) }}" title="Supprimer un utilisateur" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-fw"></i></a>
-                                </td>
-                            </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
+                    <div class="text-center">{{ knp_pagination_render(posts) }}</div>
                     <!-- /.table-responsive -->
                 </div>
                 <!-- /.panel-body -->

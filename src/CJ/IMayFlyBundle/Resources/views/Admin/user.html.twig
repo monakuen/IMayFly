@@ -26,39 +26,21 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {% for user in users %}
                             <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>24</td>
-                                <td>154</td>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.vote }}</td>
+                                <td>{{ user.view }}</td>
                                 <td class="text-center">
-                                    <a href="user_update.html" title="Modifier un utilisateur" class="btn btn-sm btn-warning"><i class="fa fa-edit fa-fw"></i></a>
-                                    <a href="{{ path ('CJ_IMayFly_admindelete',{'id': 1}) }}" title="Supprimer un utilisateur" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-fw"></i></a>
+                                    <a href="{{ path ('CJ_IMayFly_adminuserdelete',{'id': user.id}) }}" title="Supprimer un utilisateur" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-fw"></i></a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
-                                <td>45</td>
-                                <td>56</td>
-                                <td class="text-center">
-                                    <a href="user_update.html" title="Modifier un utilisateur" class="btn btn-sm btn-warning"><i class="fa fa-edit fa-fw"></i></a>
-                                    <a href="{{ path ('CJ_IMayFly_admindelete',{'id': 1}) }}" title="Supprimer un utilisateur" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-fw"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Larry</td>
-                                <td>245</td>
-                                <td>1554</td>
-                                <td class="text-center">
-                                    <a href="user_update.html" title="Modifier un utilisateur" class="btn btn-sm btn-warning"><i class="fa fa-edit fa-fw"></i></a>
-                                    <a href="{{ path ('CJ_IMayFly_admindelete',{'id': 1}) }}" title="Supprimer un utilisateur" class="btn btn-sm btn-danger"><i class="fa fa-trash-o fa-fw"></i></a>
-                                </td>
-                            </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
+                    <div class="text-center">{{ knp_pagination_render(users) }}</div>
                     <!-- /.table-responsive -->
                 </div>
                 <!-- /.panel-body -->

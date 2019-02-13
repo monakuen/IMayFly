@@ -80,9 +80,9 @@
                         </ul>
                     </div>
                 </nav>
-                <form class="search-form" action="search.php" method="GET" accept-charset="utf-8">
+                <form class="search-form" action="{{ path('CJ_IMayFly_search') }}" method="GET" accept-charset="utf-8">
                     <label class="search-form_label">
-                        <input class="search-form_input" type="text" name="s" autocomplete="off" placeholder=""/>
+                        <input class="search-form_input" type="text" name="search-input" autocomplete="off" placeholder=""/>
                         <span class="search-form_liveout"></span>
                     </label>
                     <button class="search-form_submit btn btn-default" type="submit"></button>
