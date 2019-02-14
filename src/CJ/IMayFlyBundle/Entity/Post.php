@@ -39,7 +39,12 @@ class Post
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255)
-     * @Assert\Image(
+     *
+     */
+    private $image;
+
+    /**
+     * @var @Assert\Image(
      *     maxSize = "1024k",
      *     minWidth = 200,
      *     maxWidth = 1920,
@@ -47,7 +52,7 @@ class Post
      *     maxHeight = 1920
      *     )
      */
-    private $image;
+    private $uploadedFile;
 
     /**
      * @var string
@@ -317,8 +322,8 @@ class Post
 
     public function upload()
     {
-        $fileName = md5(uniqid()).'.'.$this->image->guessExtension();
-        $this->image->move(
+        $fileName = md5(uniqid()).'.'.$this->uploadedFile->guessExtension();
+        $this->uploadedFile->move(
             $this->getUploadRootDir(),
             $fileName
         );
@@ -334,5 +339,23 @@ class Post
     {
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUploadedFile()
+    {
+        return $this->uploadedFile;
+    }
+
+    /**
+     * @param mixed $uploadedFile
+     */
+    public function setUploadedFile($uploadedFile)
+    {
+        $this->uploadedFile = $uploadedFile;
+    }
+
+
 }
 

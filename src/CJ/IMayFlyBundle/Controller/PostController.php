@@ -97,9 +97,10 @@ class PostController extends Controller
         $post = $repository->find($id);
 
         $form = $this->get('form.factory')->create(PostType::class, $post);
-
-        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()){
-            $post->upload();
+        $form->handleRequest($request);
+        dump($post);
+        if($form->isValid()){
+//            $post->upload();
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
