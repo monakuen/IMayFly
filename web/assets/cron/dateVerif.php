@@ -13,10 +13,10 @@ $listPosts = $bdd->query('SELECT * FROM post');
 
 
 foreach ($listPosts as $post){
-    $datePost = $post['date'];
+    $datePost = new DateTime($post['date']);
     $diff = $datePost->diff($now);
     $nb_jours = $diff->days;
-    if($nb_jours > 5){
+    if($nb_jours > 10){
         $req = $bdd->prepare('DELETE FROM post WHERE id = '.$post['id']);
         $req->execute();
     }
