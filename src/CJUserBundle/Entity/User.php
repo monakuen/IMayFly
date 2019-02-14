@@ -20,12 +20,12 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(name="view", type="integer")
+     * @ORM\Column(name="view", type="integer", nullable=true)
      */
     protected $view;
 
     /**
-     * @ORM\Column(name="vote", type="integer")
+     * @ORM\Column(name="vote", type="integer", nullable=true)
      */
     protected $vote;
 

@@ -57,6 +57,9 @@ class AdminController extends Controller
         ));
     }
 
+    /**
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
+     */
     public function deletePostAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -73,6 +76,9 @@ class AdminController extends Controller
         ));
     }
 
+    /**
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
+     */
     public function searchAction(Request $request, $page)
     {
         $searchInput = $request->get('search-input');
@@ -96,6 +102,9 @@ class AdminController extends Controller
     }
 
 
+    /**
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
+     */
     public function deleteUserAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
